@@ -1,15 +1,18 @@
+import axios from 'axios'
 import React, { useState } from 'react'
 import { ChromePicker } from 'react-color'
+import { API } from '../../Backend'
 import Modal from '../Modal'
 
 const Hero = () => {
 
-    const [priamryColor, setPrimaryColor] = useState("#445EE6")
+    const [primaryColor, setPrimaryColor] = useState("#445EE6")
     const [secondaryColor, setSecondaryColor] = useState("#EC256B")
     const [showColorPicker1, setShowColorPicker1] = useState(false)
     const [showColorPicker2, setShowColorPicker2] = useState(false)
     const [name, setName] = useState("")
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState(false)
 
     const handelColorPicker1 = () => {
         setShowColorPicker2(false)
@@ -21,21 +24,39 @@ const Hero = () => {
         setShowColorPicker2(!showColorPicker2)
     }
 
-    const handelSubmit = () => {
+    const handelSubmit = (e) => {
+        e.preventDefault();
         if (!name) {
             setError("Please enter your name")
             setTimeout(() => {
                 setError("")
             }, 5000);
         } else {
+            setLoading(true)
             setError("")
+            const config = {
+                header: {
+                  "Content-Type": "application/json",
+                },
+              };
             const data = {
-                priamryColor: priamryColor,
-                secondaryColor: secondaryColor,
-                name:name
+                name,
+                primaryColor,
+                secondaryColor,
             }
-            console.log("Submititng request", data)
-            document.getElementById("modal").click()
+            try {
+                axios.post(`${API}/createorder`, {name, primaryColor, secondaryColor}, config)
+                .then(res=>{
+                    console.log("Order Successful", res)
+                    setLoading(false)
+                    document.getElementById("modal").click()
+                })
+            } catch (error) {
+                setError("Some error occured, please try again later")
+                setTimeout(() => {
+                    setError("")
+                }, 5000);
+            }
         }
     }
 
@@ -53,11 +74,11 @@ const Hero = () => {
                             <h6>Primary</h6>
                             <div
                             className='rounded position-relative' 
-                            style={{width:"100px", height:"100px", backgroundColor:`${priamryColor}`}}
+                            style={{width:"100px", height:"100px", backgroundColor:`${primaryColor}`}}
                             onClick={handelColorPicker1}
                             ></div>
                             <ChromePicker 
-                            color={priamryColor}
+                            color={primaryColor}
                             onChange={color=>setPrimaryColor(color.hex)}
                             disableAlpha={true}
                             className={showColorPicker1 ? 'd-block position-absolute mobile-color-picker' : 'd-none'}
@@ -84,7 +105,7 @@ const Hero = () => {
                             <input type="text" name="name" className='form-control form-control-lg' required value={name} onChange={(e)=> setName(e.target.value)}  autoComplete="off" />
                         </div>
                         <div className="col-12">
-                            <button onClick={handelSubmit} className='btn btn-primary mt-3'>Place Order</button>
+                            <button onClick={handelSubmit} className='btn btn-primary mt-3'>{loading ? "Processing" : "Place Order"}</button>
                             {error && <p className='mt-3 text-danger'>{error}</p>}
                         </div>
                     </div>
