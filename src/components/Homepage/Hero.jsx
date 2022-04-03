@@ -6,8 +6,8 @@ import Modal from '../Modal'
 
 const Hero = () => {
 
-    const [primaryColor, setPrimaryColor] = useState("#445EE6")
-    const [secondaryColor, setSecondaryColor] = useState("#EC256B")
+    const [primaryColor, setPrimaryColor] = useState("#ee8f69")
+    const [secondaryColor, setSecondaryColor] = useState("#4f6486")
     const [showColorPicker1, setShowColorPicker1] = useState(false)
     const [showColorPicker2, setShowColorPicker2] = useState(false)
     const [name, setName] = useState("")
@@ -64,10 +64,10 @@ const Hero = () => {
     <section className='bg-secondary pt-5' style={{paddingBottom:"7rem"}}>
         <div className="container">
             <div className="row" style={{minHeight:"300px"}}>
-                <div className="col-lg-6 col-sm-12">
-                    <img src="https://images.pexels.com/photos/169190/pexels-photo-169190.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" className='w-100 rounded' alt="" />
+                <div className="col-lg-8 col-sm-12">
+                    <img src="https://demo.bootstrapious.com/varkala/2-0-1/img/product/detail-3-gray.jpg" className='w-100 rounded' alt="" />
                 </div>
-                <div className="col-lg-6 col-sm-12 px-3 px-lg-3 mt-3 mt-lg-0">
+                <div className="col-lg-4 col-sm-12 px-3 px-lg-3 mt-3 mt-lg-0">
                     <h3 className='mb-3'>Please choose your colors</h3>
                     <div className="d-flex">
                         <div className='me-5'>
@@ -100,7 +100,7 @@ const Hero = () => {
                         </div>
                     </div>
                     <div className='row mt-4'>
-                        <div className="col-md-6 col-sm-12">
+                        <div className="col-12">
                             <label htmlFor="name">Your Name</label>
                             <input type="text" name="name" className='form-control form-control-lg' required value={name} onChange={(e)=> setName(e.target.value)}  autoComplete="off" />
                         </div>

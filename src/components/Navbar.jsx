@@ -23,6 +23,7 @@ const Navbar = () => {
                 </span>
                 <div>
                     <Link className='text-dark me-4' to={'/'}>Order Now</Link>
+                    <Link className='text-dark me-4' to={'/image'}>Image Edit</Link>
                     <Link className='text-dark' to={'/listing'}>See Orders</Link>
                 </div>
         </div>
