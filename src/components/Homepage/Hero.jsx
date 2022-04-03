@@ -61,7 +61,7 @@ const Hero = () => {
     }
 
   return (
-    <section className='bg-secondary pt-5' style={{paddingBottom:"7rem"}}>
+    <section className='bg-secondary pt-5' style={{paddingBottom:"10rem"}}>
         <div className="container">
             <div className="row" style={{minHeight:"300px"}}>
                 <div className="col-lg-8 col-sm-12">
@@ -71,7 +71,7 @@ const Hero = () => {
                     <h3 className='mb-3'>Please choose your colors</h3>
                     <div className="d-flex">
                         <div className='me-5'>
-                            <h6>Primary</h6>
+                            <h6>T-shirt</h6>
                             <div
                             className='rounded position-relative' 
                             style={{width:"100px", height:"100px", backgroundColor:`${primaryColor}`}}
@@ -85,7 +85,7 @@ const Hero = () => {
                             />
                         </div>
                         <div>
-                            <h6>Secondary</h6>
+                            <h6>Jeans</h6>
                             <div
                             className='rounded position-relative' 
                             style={{width:"100px", height:"100px", backgroundColor:`${secondaryColor}`}}
